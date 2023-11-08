@@ -39,7 +39,7 @@ class _SignInState extends State<SignIn> {
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: Colors.deepOrange),
+                        color: Colors.purpleAccent),
                   ),
                 ),
                 Padding(
@@ -72,7 +72,7 @@ class _SignInState extends State<SignIn> {
                       padding: const EdgeInsets.only(right: 10),
                       child: TextButton(
                         child: const Text("Forgot Password?",
-                            style: TextStyle(color: Colors.blue)),
+                            style: TextStyle(color: Colors.purpleAccent)),
                         onPressed: () {},
                       ),
                     )),
@@ -123,8 +123,8 @@ class _SignInState extends State<SignIn> {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.orange,
-                          backgroundColor: Colors.deepOrangeAccent),
+                          foregroundColor: Colors.purple,
+                          backgroundColor: Colors.deepPurpleAccent),
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

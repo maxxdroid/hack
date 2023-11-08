@@ -21,16 +21,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Nerds',
       routes: {
-        "signIn": (context) => const SignIn(),
-        "tabs": (context) => const Tabs(),
-        "loading": (context) => const LoadingPage(),
-        "user home": (context) => const StoreHome(),
-        "store tabs": (context) => const HomeTab(),
-        "details": (context) => const DetailsScreeen()
+        "/signIn": (context) => const SignIn(),
+        "/tabs": (context) => const Tabs(),
+        "/loading": (context) => const LoadingPage(),
+        "/user home": (context) => const StoreHome(),
+        "/store tabs": (context) => const HomeTab(),
+        "/details": (context) => const DetailsScreeen()
         // "model": (context) => const Model3d()
       },
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
         useMaterial3: true,
       ),
       home: const LoadingPage(),
