@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nerds_project/auth/sign_in.dart';
+import 'package:nerds_project/screens/details_screen.dart';
 import 'package:nerds_project/screens/loading_screen.dart';
 import 'package:nerds_project/store/home_tab.dart';
 import 'package:nerds_project/store/store_home.dart';
@@ -23,8 +24,9 @@ class MyApp extends StatelessWidget {
         "signIn": (context) => const SignIn(),
         "tabs": (context) => const Tabs(),
         "loading": (context) => const LoadingPage(),
-        "user home":(context) => const StoreHome(),
-        "store tabs":(context) => const HomeTab()
+        "user home": (context) => const StoreHome(),
+        "store tabs": (context) => const HomeTab(),
+        "details": (context) => const DetailsScreeen()
         // "model": (context) => const Model3d()
       },
       theme: ThemeData(
@@ -35,4 +37,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

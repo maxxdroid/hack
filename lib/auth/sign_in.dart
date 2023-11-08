@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'dart:ui';
-
+import '../functions/shared_pref.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import '../models/user.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -13,6 +16,7 @@ class _SignInState extends State<SignIn> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +39,7 @@ class _SignInState extends State<SignIn> {
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: Colors.deepOrange
-                        ),
+                        color: Colors.deepOrange),
                   ),
                 ),
                 Padding(
@@ -108,7 +111,16 @@ class _SignInState extends State<SignIn> {
                   child: ElevatedButton(
                       onPressed: () {
                         final FormState? form = _formKey.currentState;
-                        if (form!.validate()) {}
+                        if (form!.validate()) {
+                          User newUser = User(
+                            name: 'John Doe',
+                            email: _emailController.text.trim(),
+                            phoneNumber: '123-456-7890',
+                            password: _passwordController.text.trim(),
+                          );
+                          print('........................${newUser.email}............................');
+                          // createUser(newUser);
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.orange,
