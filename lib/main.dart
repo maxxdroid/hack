@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nerds_project/auth/sign_in.dart';
 import 'auth/sign_up.dart';
 import 'package:nerds_project/screens/details_screen.dart';
@@ -9,6 +10,10 @@ import 'package:nerds_project/store/store_home.dart';
 import 'auth/tabview.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.deepPurple, // navigation bar color
+    statusBarColor: Colors.deepPurple, // status bar color
+  ));
   runApp(const MyApp());
 }
 
@@ -33,7 +38,13 @@ class MyApp extends StatelessWidget {
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
+        appBarTheme: const AppBarTheme(
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          
+        ),
+        
         useMaterial3: true,
+        
       ),
       home: const LoadingPage(),
     );

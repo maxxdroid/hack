@@ -11,15 +11,15 @@ class _StoreHomeState extends State<StoreHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(toolbarHeight: 0,),
       backgroundColor: Colors.white,
-      // appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(
           // mainAxisAlignment: ,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 20, top: 40, right: 20),
+              padding: const EdgeInsets.only(left: 10, top: 40, right: 10),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,7 +42,7 @@ class _StoreHomeState extends State<StoreHome> {
             ),
             Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20),
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
@@ -65,8 +65,8 @@ class _StoreHomeState extends State<StoreHome> {
                 shrinkWrap: true,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 15,
-                    mainAxisSpacing: 15,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
                     mainAxisExtent: 180,
                     childAspectRatio: 2),
                 children: [
@@ -94,7 +94,7 @@ class _StoreHomeState extends State<StoreHome> {
                                   bottom: 5.0, left: 5, right: 5),
                               child: Card(
                                 elevation: 0,
-                                color: Colors.purple.withOpacity(0.6),
+                                color: Colors.deepPurpleAccent.withOpacity(0.7),
                                 child: Container(
                                     width: 120,
                                     padding: const EdgeInsets.all(5.0),
@@ -182,7 +182,7 @@ class _StoreHomeState extends State<StoreHome> {
                                 bottom: 5.0, left: 5, right: 5),
                             child: Card(
                               elevation: 0,
-                              color: Colors.purple.withOpacity(0.6),
+                              color: Colors.deepPurpleAccent.withOpacity(0.7),
                               child: Container(
                                   width: 120,
                                   padding: const EdgeInsets.all(5.0),
@@ -269,7 +269,7 @@ class _StoreHomeState extends State<StoreHome> {
                                 bottom: 5.0, left: 5, right: 5),
                             child: Card(
                               elevation: 0,
-                              color: Colors.purple.withOpacity(0.6),
+                              color: Colors.deepPurpleAccent.withOpacity(0.7),
                               child: Container(
                                   width: 120,
                                   padding: const EdgeInsets.all(5.0),
@@ -355,7 +355,7 @@ class _StoreHomeState extends State<StoreHome> {
                                 bottom: 5.0, left: 5, right: 5),
                             child: Card(
                               elevation: 0,
-                              color: Colors.purple.withOpacity(0.6),
+                              color: Colors.deepPurpleAccent.withOpacity(0.7),
                               child: Container(
                                   width: 120,
                                   padding: const EdgeInsets.all(5.0),
@@ -442,7 +442,7 @@ class _StoreHomeState extends State<StoreHome> {
                                 bottom: 5.0, left: 5, right: 5),
                             child: Card(
                               elevation: 0,
-                              color: Colors.amber.withOpacity(0.6),
+                              color: Colors.deepPurpleAccent.withOpacity(0.7),
                               child: Container(
                                   width: 120,
                                   padding: const EdgeInsets.all(5.0),
@@ -530,7 +530,7 @@ class _StoreHomeState extends State<StoreHome> {
                                 bottom: 5.0, left: 5, right: 5),
                             child: Card(
                               elevation: 0,
-                              color: Colors.amber.withOpacity(0.6),
+                              color:Colors.deepPurpleAccent.withOpacity(0.7),
                               child: Container(
                                   width: 120,
                                   padding: const EdgeInsets.all(5.0),
