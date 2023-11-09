@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-class Cart extends StatefulWidget {
-  const Cart({super.key});
+class Carts extends StatefulWidget {
+  const Carts({super.key});
 
   @override
-  State<Cart> createState() => _CartState();
+  State<Carts> createState() => _CartState();
 }
 
-class _CartState extends State<Cart> {
+class _CartState extends State<Carts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
           centerTitle: true,
-          title: const Text("My Cart"),
+          title: const Text("My Carts"),
         ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(

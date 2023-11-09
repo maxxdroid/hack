@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
+import 'package:nerds_project/models/product.dart';
 
 class DetailsScreeen extends StatefulWidget {
-  const DetailsScreeen({super.key});
+
+  final Product product;
+
+  const DetailsScreeen({super.key, required this.product});
 
   @override
   State<DetailsScreeen> createState() => _DetailsScreeenState();
 }
 
 class _DetailsScreeenState extends State<DetailsScreeen> {
+
+  Product? product;
+
+  @override
+  void initState() {
+    product = widget.product;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -42,90 +55,86 @@ class _DetailsScreeenState extends State<DetailsScreeen> {
                 Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30)),
-                  child: const SizedBox(
+                  child:  SizedBox(
                     height: 300,
                     // width: 250,
                     child: ModelViewer(
-                      src: 'assets/models3d/bat.glb',
+                      src: product!.image3d ?? "",
                       autoRotate: true,
                       // backgroundColor: Colors.deepOrange,
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: width * 0.8,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                        "https://th.bing.com/th/id/OIP.YXP2XhbIzXRhFUzp4uFmgAHaHa?pid=ImgDet&rs=1",
-                        width: 70,
-                        height: 70,
-                        fit: BoxFit.fill,
-                      )),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                        "https://s24990.pcdn.co/wp-content/uploads/2018/05/Baseball-Bat-Murder-27.jpg",
-                        width: 70,
-                        height: 70,
-                        fit: BoxFit.fill,
-                      )),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                        "https://th.bing.com/th/id/OIP.YXP2XhbIzXRhFUzp4uFmgAHaHa?pid=ImgDet&rs=1",
-                        width: 70,
-                        height: 70,
-                        fit: BoxFit.fill,
-                      )),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                          child: Image.network(
-                        "https://s24990.pcdn.co/wp-content/uploads/2018/05/Baseball-Bat-Murder-27.jpg",
-                        width: 70,
-                        height: 70,
-                        fit: BoxFit.fill,
-                      )),
-                    ],
+                // SizedBox(
+                //   width: width * 0.8,
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //     children: [
+                //       ClipRRect(
+                //         borderRadius: BorderRadius.circular(20),
+                //           child: Image.network(
+                //         "https://th.bing.com/th/id/OIP.YXP2XhbIzXRhFUzp4uFmgAHaHa?pid=ImgDet&rs=1",
+                //         width: 70,
+                //         height: 70,
+                //         fit: BoxFit.fill,
+                //       )),
+                //       ClipRRect(
+                //         borderRadius: BorderRadius.circular(20),
+                //           child: Image.network(
+                //         "https://s24990.pcdn.co/wp-content/uploads/2018/05/Baseball-Bat-Murder-27.jpg",
+                //         width: 70,
+                //         height: 70,
+                //         fit: BoxFit.fill,
+                //       )),
+                //       ClipRRect(
+                //         borderRadius: BorderRadius.circular(20),
+                //           child: Image.network(
+                //         "https://th.bing.com/th/id/OIP.YXP2XhbIzXRhFUzp4uFmgAHaHa?pid=ImgDet&rs=1",
+                //         width: 70,
+                //         height: 70,
+                //         fit: BoxFit.fill,
+                //       )),
+                //       ClipRRect(
+                //         borderRadius: BorderRadius.circular(20),
+                //           child: Image.network(
+                //         "https://s24990.pcdn.co/wp-content/uploads/2018/05/Baseball-Bat-Murder-27.jpg",
+                //         width: 70,
+                //         height: 70,
+                //         fit: BoxFit.fill,
+                //       )),
+                //     ],
+                //   ),
+                // ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, left: 10),
+                  child: Text(
+                    product!.subDescription ?? '',
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 20, left: 10),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 10),
                   child: Text(
-                    "Pure White Bat",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                  ),
+                      product!.description ?? ""),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10, left: 10),
-                  child: Text(
-                      "A white colourless Aluminium Bat, made to hit the ball hard and fast unlike anything you have ever seen."),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 20, left: 10),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, left: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
                         children: [
                           Text(
-                            "₵300",
-                            style: TextStyle(
+                            product!.price ?? "₵300",
+                            style: const TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.w500),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 30,
-                          ),
-                          Text(
-                            "₵600",
-                            style: TextStyle(fontSize: 14, color: Colors.grey),
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 70,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -212,14 +221,14 @@ class _DetailsScreeenState extends State<DetailsScreeen> {
                           child: ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                                foregroundColor: Colors.orange,
-                                backgroundColor: Colors.deepOrangeAccent),
+                                foregroundColor: Colors.deepPurple,
+                                backgroundColor: Colors.deepPurpleAccent),
                             child: const Text(
                               "Add to cart",
                               style: TextStyle(color: Colors.white),
                             ),
                           )),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Container(
@@ -230,8 +239,8 @@ class _DetailsScreeenState extends State<DetailsScreeen> {
                           child: ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                                foregroundColor: Colors.orange,
-                                backgroundColor: Colors.deepOrangeAccent),
+                                foregroundColor: Colors.deepPurple,
+                                backgroundColor: Colors.deepPurpleAccent),
                             child: const Text(
                               "Buy now",
                               style: TextStyle(color: Colors.white),

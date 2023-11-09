@@ -14,6 +14,7 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   int pageIndex = 0;
   late PageController pageController;
+  
 
   @override
   void initState() {
@@ -21,7 +22,21 @@ class _HomeTabState extends State<HomeTab> {
     // onLaunch();
     setState(() {});
     pageController = PageController(initialPage: pageIndex);
+
+     pageController.addListener(() {
+      setState(() {
+        pageIndex = pageController.page!.round();
+      });
+    });
   }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +46,7 @@ class _HomeTabState extends State<HomeTab> {
       body: PageView(
         controller: pageController,
         // physics: ,
-        children: const [StoreHome(), Search(), Cart(), Profile()],
+        children: const [StoreHome(), Search(), Carts(), Profile()],
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal:40.0),

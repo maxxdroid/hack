@@ -6,7 +6,7 @@ import 'package:nerds_project/models/user.dart';
 class AuthMethods {
   Future<void> createUser(User newUser) async {
     final response = await http.post(
-      Uri.parse("https://afe0-196-61-44-226.ngrok-free.app/api/user/create/"),
+      Uri.parse("https://fox-current-filly.ngrok-free.app/api/register/"),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
         'name': newUser.name,
@@ -17,16 +17,35 @@ class AuthMethods {
     );
 
     if (response.statusCode == 201) {
-      // User creation was successful (status code 201 - Created)
-      // print('Response body: ${response.body}');
       final responseData = json.decode(response.body);
       final id = responseData['user_id'];
       SharedPrefHelper().saveUserID(id);
     } else {
       // Handle errors when user creation fails
-      print('Response body: ${response.body}');
       throw Exception(
           'Failed to create user. Status code: ${response.statusCode}');
+    }
+  }
+
+  Future<void> signInUser(User newUser) async {
+    final response = await http.post(
+      Uri.parse("https://fox-current-filly.ngrok-free.app/api/signin/"),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({
+        "email": newUser.email,
+        'password': newUser.password,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      // User Sign in was successful (status code 201 - Created)
+      // print('Response body: ${response.body}');
+      // final responseData = json.decode(response.body);
+      // final token = responseData['auth_token'];
+    } else {
+      // Handle errors when user creation fails
+      throw Exception(
+          'Failed to sign in user. Status code: ${response.statusCode}');
     }
   }
 }

@@ -1,9 +1,8 @@
-import 'dart:convert';
-import 'dart:ui';
-import '../functions/shared_pref.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import '../models/user.dart';
+import 'package:nerds_project/auth/auth.dart';
+import 'package:nerds_project/models/user.dart';
+import 'package:nerds_project/widgets/loading_alert.dart';
+// import '../models/user.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -63,8 +62,8 @@ class _SignInState extends State<SignIn> {
                           labelText: "Email",
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                            borderSide:
-                                const BorderSide(color: Colors.grey, width: 1.5),
+                            borderSide: const BorderSide(
+                                color: Colors.grey, width: 1.5),
                           ),
                         ),
                       )),
@@ -100,8 +99,8 @@ class _SignInState extends State<SignIn> {
                           labelText: "Password",
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                            borderSide:
-                                const BorderSide(color: Colors.grey, width: 1.5),
+                            borderSide: const BorderSide(
+                                color: Colors.grey, width: 1.5),
                           ),
                         ),
                       )),
@@ -112,10 +111,34 @@ class _SignInState extends State<SignIn> {
                     width: width * 0.9,
                     child: ElevatedButton(
                         onPressed: () {
-                          // final FormState? form = _formKey.currentState;
-                          // if (form!.validate()) {
-                          // }
-                          Navigator.pushReplacementNamed(context, "/storeTabs");
+                          final FormState? form = _formKey.currentState;
+                          if (form!.validate()) {
+                            User user = User(
+                              email: _emailController.text.trim(),
+                              password: _passwordController.text.trim(),
+                            );
+
+                            showDialog(
+                                context: context,
+                                builder: (_) {
+                                  return const LoadingAlert(
+                                    message: 'Signing in please wait...',
+                                  );
+                                });
+
+                            AuthMethods()
+                                .signInUser(user)
+                                .then((value) => Navigator.pushReplacementNamed(
+                                    context, "/storeTabs"))
+                                .onError((error, stackTrace) {
+                              Navigator.pop(context);
+                              return ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("Sign In error kindly check your credentials"),
+                                duration: Duration(seconds: 2),
+                              ));
+                            });
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.purple,
@@ -125,7 +148,8 @@ class _SignInState extends State<SignIn> {
                           children: [
                             Text(
                               "Sign In",
-                              style: TextStyle(color: Colors.white, fontSize: 16),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 16),
                             ),
                             SizedBox(
                               width: 10,

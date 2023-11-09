@@ -18,7 +18,8 @@ class _LoadingPageState extends State<LoadingPage> {
       //   id = AuthMethods().auth.currentUser!.uid;
       //   // print("...............................$id");
       // } else {
-      Navigator.pushReplacementNamed(context, "/authtabs");
+      // Navigator.pushReplacementNamed(context, "/authtabs");
+      Navigator.pushReplacementNamed(context, "/storeTabs");
       // }
     });
   }
