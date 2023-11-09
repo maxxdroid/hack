@@ -12,13 +12,13 @@ class LoadingPage extends StatefulWidget {
 
 class _LoadingPageState extends State<LoadingPage> {
   displaySplash() {
-    Timer(const Duration(seconds: 4), () async {
+    Timer(const Duration(seconds: 6), () async {
       // if (AuthMethods().auth.currentUser != null) {
       //   Navigator.pushReplacementNamed(context, "home");
       //   id = AuthMethods().auth.currentUser!.uid;
       //   // print("...............................$id");
       // } else {
-      Navigator.pushReplacementNamed(context, "/store tabs");
+      Navigator.pushReplacementNamed(context, "/authtabs");
       // }
     });
   }
@@ -33,10 +33,24 @@ class _LoadingPageState extends State<LoadingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.deepPurple,
       body: Center(
-        child: LoadingAnimationWidget.staggeredDotsWave(
-          color: Colors.deepOrangeAccent,
-          size: 100,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Artify",
+              style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+            const SizedBox(height: 20,),
+            LoadingAnimationWidget.threeRotatingDots(
+              color: Colors.purpleAccent,
+              size: 100,
+            ),
+          ],
         ),
       ),
     );

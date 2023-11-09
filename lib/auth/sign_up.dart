@@ -1,7 +1,4 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:nerds_project/functions/shared_pref.dart';
 import 'package:nerds_project/models/user.dart';
 
 class SignUp extends StatefulWidget {
@@ -15,31 +12,8 @@ class _SignUpState extends State<SignUp> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-
-  Future<void> createUser(User newUser) async {
-  final response = await http.post(
-    Uri.parse("https://afe0-196-61-44-226.ngrok-free.app/api/user/create/"),
-    headers: {'Content-Type': 'application/json'},
-    body: json.encode({
-      'name': newUser.name,
-      'email': newUser.email,
-      'phoneNumber': newUser.phoneNumber,
-      'password': newUser.password,
-    }),
-  );
-
-  if (response.statusCode == 201) {
-    // User creation was successful (status code 201 - Created)
-    // print('Response body: ${response.body}');
-    final responseData = json.decode(response.body);
-    final id = responseData['user_id'];
-    SharedPrefHelper().saveUserID(id);
-  } else {
-    // Handle errors when user creation fails
-    print('Response body: ${response.body}');
-    throw Exception('Failed to create user. Status code: ${response.statusCode}');
-  }
-}
+  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -62,15 +36,17 @@ class _SignUpState extends State<SignUp> {
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: Colors.orangeAccent),
+                        color: Colors.purple),
                   ),
                 ),
                 Padding(
                     padding: const EdgeInsets.only(
                         top: 0.0, left: 15, right: 15, bottom: 10),
                     child: TextFormField(
-                      controller: _emailController,
-                      keyboardType: TextInputType.number,
+                      controller: _nameController,
+                      keyboardType: TextInputType.name,
+                      autofocus: true,
+                      autocorrect: true,
                       validator: (val) {
                         if (_emailController.text.isEmpty) {
                           return "Field cannot be empty";
@@ -94,7 +70,9 @@ class _SignUpState extends State<SignUp> {
                         top: 0.0, left: 15, right: 15, bottom: 10),
                     child: TextFormField(
                       controller: _emailController,
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.emailAddress,
+                      autofocus: true,
+                      autocorrect: true,
                       validator: (val) {
                         if (_emailController.text.isEmpty) {
                           return "Field cannot be empty";
@@ -113,35 +91,13 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                     )),
-                Padding(
-                    padding: const EdgeInsets.only(
-                        top: 0.0, left: 15, right: 15, bottom: 10),
-                    child: TextFormField(
-                      controller: _emailController,
-                      keyboardType: TextInputType.number,
-                      validator: (val) {
-                        if (_emailController.text.isEmpty) {
-                          return "Field cannot be empty";
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        labelStyle: const TextStyle(
-                          fontSize: 14,
-                        ),
-                        labelText: "Phone",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide:
-                              const BorderSide(color: Colors.grey, width: 1.5),
-                        ),
-                      ),
-                    )),
-                Padding(
+                    Padding(
                     padding: const EdgeInsets.only(
                         top: 10.0, left: 15, right: 15, bottom: 20),
                     child: TextFormField(
                       controller: _passwordController,
+                      autofocus: true,
+                      autocorrect: true,
                       obscureText: true,
                       validator: (val) {
                         if (_passwordController.text.isEmpty) {
@@ -164,6 +120,32 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                     )),
+                Padding(
+                    padding: const EdgeInsets.only(
+                        top: 0.0, left: 15, right: 15, bottom: 10),
+                    child: TextFormField(
+                      controller: _confirmPasswordController,
+                      autofocus: true,
+                      autocorrect: true,
+                      validator: (val) {
+                        if (_emailController.text.isEmpty) {
+                          return "Field cannot be empty";
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        labelStyle: const TextStyle(
+                          fontSize: 14,
+                        ),
+                        labelText: "Confirm Password",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide:
+                              const BorderSide(color: Colors.grey, width: 1.5),
+                        ),
+                      ),
+                    )),
+                
                 Container(
                   padding: const EdgeInsets.only(
                       top: 5.0, left: 0, right: 0, bottom: 20),
@@ -171,24 +153,31 @@ class _SignUpState extends State<SignUp> {
                   width: width * 0.9,
                   child: ElevatedButton(
                       onPressed: () {
-                        final FormState? form = _formKey.currentState;
-                        if (form!.validate()) {}
+                        // final FormState? form = _formKey.currentState;
+                        // if (form!.validate()) {
+                        //   User newUser = User(
+                        //     name: _nameController.text.trim(),
+                        //     email: _emailController.text.trim(),
+                        //     password: _passwordController.text.trim(),
+                        //   );
+                        // }
+                        Navigator.pushReplacementNamed(context, "/storeTabs");
                       },
                       style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.purple,
-                          backgroundColor: Colors.orangeAccent),
-                      child: Row(
+                          foregroundColor: Colors.white,
+                          backgroundColor: Colors.deepPurple),
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Sign In",
+                            "Sign Up",
                             style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             width: 10,
                           ),
                           Icon(
-                            Icons.arrow_forward,
+                            Icons.check,
                             color: Colors.white,
                           )
                         ],

@@ -17,7 +17,6 @@ class _SignInState extends State<SignIn> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -39,15 +38,17 @@ class _SignInState extends State<SignIn> {
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: Colors.purpleAccent),
+                        color: Colors.purple),
                   ),
                 ),
                 Padding(
                     padding: const EdgeInsets.only(
-                        top: 0.0, left: 15, right: 15, bottom: 5),
+                        top: 0.0, left: 15, right: 15, bottom: 0),
                     child: TextFormField(
                       controller: _emailController,
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.emailAddress,
+                      autofocus: true,
+                      autocorrect: true,
                       validator: (val) {
                         if (_emailController.text.isEmpty) {
                           return "Field cannot be empty";
@@ -72,13 +73,13 @@ class _SignInState extends State<SignIn> {
                       padding: const EdgeInsets.only(right: 10),
                       child: TextButton(
                         child: const Text("Forgot Password?",
-                            style: TextStyle(color: Colors.purpleAccent)),
+                            style: TextStyle(color: Colors.purple)),
                         onPressed: () {},
                       ),
                     )),
                 Padding(
                     padding: const EdgeInsets.only(
-                        top: 5.0, left: 15, right: 15, bottom: 20),
+                        top: 0.0, left: 15, right: 15, bottom: 20),
                     child: TextFormField(
                       controller: _passwordController,
                       obscureText: true,
@@ -110,17 +111,10 @@ class _SignInState extends State<SignIn> {
                   width: width * 0.9,
                   child: ElevatedButton(
                       onPressed: () {
-                        final FormState? form = _formKey.currentState;
-                        if (form!.validate()) {
-                          User newUser = User(
-                            name: 'John Doe',
-                            email: _emailController.text.trim(),
-                            phoneNumber: '123-456-7890',
-                            password: _passwordController.text.trim(),
-                          );
-                          print('........................${newUser.email}............................');
-                          // createUser(newUser);
-                        }
+                        // final FormState? form = _formKey.currentState;
+                        // if (form!.validate()) {
+                        // }
+                        Navigator.pushReplacementNamed(context, "/storeTabs");
                       },
                       style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.purple,

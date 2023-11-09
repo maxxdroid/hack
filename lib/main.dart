@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nerds_project/auth/sign_in.dart';
+import 'auth/sign_up.dart';
 import 'package:nerds_project/screens/details_screen.dart';
 import 'package:nerds_project/screens/loading_screen.dart';
 import 'package:nerds_project/store/home_tab.dart';
 import 'package:nerds_project/store/store_home.dart';
 
-import 'screens/tabview.dart';
+import 'auth/tabview.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,10 +23,11 @@ class MyApp extends StatelessWidget {
       title: 'Nerds',
       routes: {
         "/signIn": (context) => const SignIn(),
-        "/tabs": (context) => const Tabs(),
+        "/signUp": (context) => const SignUp(),
+        "/authtabs": (context) => const Tabs(),
         "/loading": (context) => const LoadingPage(),
-        "/user home": (context) => const StoreHome(),
-        "/store tabs": (context) => const HomeTab(),
+        "/userHome": (context) => const StoreHome(),
+        "/storeTabs": (context) => const HomeTab(),
         "/details": (context) => const DetailsScreeen()
         // "model": (context) => const Model3d()
       },

@@ -1,7 +1,7 @@
-import '../auth/sign_up.dart';
+import 'sign_up.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../auth/sign_in.dart';
+import 'sign_in.dart';
 
 class Tabs extends StatefulWidget {
   const Tabs({Key? key}) : super(key: key);
